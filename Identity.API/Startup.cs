@@ -1,6 +1,7 @@
 using FluentValidation.AspNetCore;
 using Identity.API.Middlewares;
 using Identity.API.Utilities.Extentions;
+using Identity.Infastructure.Application.Commands.Assembly;
 using Identity.Infastructure.Application.Utilities.AutoMapper;
 using Identity.Infastructure.Application.Utilities.Models;
 using Identity.Infastructure.Contexts;
@@ -74,7 +75,7 @@ namespace Identity.API
 
             services.AddAutoMapper(typeof(MapperProfile));
             services.AddCustomServices();
-            services.AddMediatR(typeof(Startup).Assembly);
+            services.AddMediatR(typeof(Identity.Infastructure.Application.Commands.Assembly.Assembly).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
