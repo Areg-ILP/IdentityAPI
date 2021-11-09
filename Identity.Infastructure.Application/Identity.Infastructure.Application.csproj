@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\RequestModels\**" />
+    <EmbeddedResource Remove="Models\RequestModels\**" />
+    <None Remove="Models\RequestModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Commands\RegistrationCommand.cs~RFc4bf307d.TMP" />
   </ItemGroup>
 
@@ -17,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\RequestModels\" />
     <Folder Include="Utilities\Validators\" />
   </ItemGroup>
 
