@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Identity.Domain\Identity.Domain.csproj" />
-    <ProjectReference Include="..\Identity.Infastructure\Identity.Infastructure.Repository.csproj" />
+    <ProjectReference Include="..\Identity.Infastructure.Repository\Identity.Infastructure.Repository.csproj" />
   </ItemGroup>
 
 </Project>
