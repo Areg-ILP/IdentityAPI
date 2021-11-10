@@ -4,6 +4,7 @@ using Identity.Domain.Entities;
 using Identity.Domain.RepositoryAbstraction;
 using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.DetailsModels;
+using Identity.Infastructure.Application.Utilities.Extentions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -37,29 +38,29 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
             var checkUser = await _userRepository.Table.ProjectTo<UserDetailsModel>(_mapper.ConfigurationProvider)
                                                        .FirstOrDefaultAsync(u => u.Email == request.Email);
 
-            var res = new ResultModel<UserDetailsModel>();
-
             if (checkUser == null)
             {
-                var passHash = request.Password/*.GenerateHash()*/;
-                await _userRepository.CreateAsync(new User()
-                {
-                    Email = request.Email,
-                    PasswordHash = passHash,
-                    //RoleId = 2 // static User
-                });
-                res.Done(new UserDetailsModel()
-                {
-                    Email = request.Email,
-                    Password = passHash
-                });
-            }
-            else
-            {
-                res.Failed("Registration error");
-            }
+                var passHash = request.Password.GenerateHash();
+                var userId = await _userRepository.CreateAsync(new User()
+                             {
+                                Email = request.Email,
+                                PasswordHash = passHash,
+                                AccessFailedCount = 0,
+                                EmailConfirmed = false,
+                                PhoneNumberConfirmed = false,
+                                TwoFactorEnabled = false,
+                                RoleId = 1
+                             });
 
-            return res;
+                return ResultModel<UserDetailsModel>.Done(new UserDetailsModel()
+                {
+                    Email = request.Email,
+                    Password = passHash,
+                    Id = userId
+                });
+            }
+            
+            return ResultModel<UserDetailsModel>.Failed("Registration error");
         }
     }
 }

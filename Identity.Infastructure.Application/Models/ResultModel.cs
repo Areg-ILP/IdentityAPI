@@ -6,16 +6,23 @@
         public T Data { get; private set; }
         public string ErrorMessage { get; private set; }
 
-        public void Done(T data)
+        public static ResultModel<T> Done(T data)
         {
-            Data = data;
-            IsSuccessed = true;
+            return new ResultModel<T>()
+            {
+                Data = data,
+                IsSuccessed = true
+            };
         }
 
-        public void Failed(string errorMessage)
+        public static ResultModel<T> Failed(string errorMessage)
         {
-            ErrorMessage = errorMessage;
-            IsSuccessed = false;
+            return new ResultModel<T>()
+            {
+                IsSuccessed = false,
+                ErrorMessage = errorMessage
+            };
         }
+        
     }
 }

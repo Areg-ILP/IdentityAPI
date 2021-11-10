@@ -5,6 +5,7 @@ using Identity.Infastructure.Application.Commands.IdentityCommands;
 using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.DetailsModels;
 using Identity.Infastructure.Application.Services.ServiceAbstractions;
+using Identity.Infastructure.Application.Utilities.Extentions;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,24 +26,16 @@ namespace Identity.Infastructure.Application.Services.ServiceImplementations
 
         public async Task<ResultModel<UserDetailsModel>> Authenticate(LoginCommand user)
         {
-            //mb Hash
-            var authRes = await _userRepository.Table.ProjectTo<UserDetailsModel>(_mapper.ConfigurationProvider)
-                                                     .AsQueryable()
+            var res = await _userRepository.Table.ProjectTo<UserDetailsModel>(_mapper.ConfigurationProvider)
                                                      .FirstOrDefaultAsync(u => u.Email == user.Email &&
-                                                                               u.Password == user.Password);
+                                                                               u.Password == user.Password.GenerateHash());
 
-            var res = new ResultModel<UserDetailsModel>();
-
-            if (authRes != null)
+            if (res != null)
             {
-                res.Done(authRes);
+                return ResultModel<UserDetailsModel>.Done(res);
             }
-            else
-            {
-                res.Failed("Authentication Error");
-            }
-
-            return res;
+            
+            return ResultModel<UserDetailsModel>.Failed("Authentication error");
         }
     }
 }

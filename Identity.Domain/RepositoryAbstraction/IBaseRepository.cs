@@ -12,8 +12,8 @@ namespace Identity.Domain.RepositoryAbstraction
     {
         Task<TEntity> Get(int? id);
         DbSet<TEntity> Table { get; }
-        Task CreateAsync(TEntity entity);
-        Task UpdateAsync(TEntity entity);
-        Task DeleteAsync(TEntity entity);
+        Task<int> CreateAsync(TEntity entity);
+        Task<int> UpdateAsync(TEntity entity);
+        Task<int> DeleteAsync(TEntity entity);
     }
 }

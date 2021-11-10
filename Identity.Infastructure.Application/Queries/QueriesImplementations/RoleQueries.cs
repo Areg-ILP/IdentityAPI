@@ -31,36 +31,25 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                                                                        .Take(paginationModel.PageSize)
                                                                        .ToListAsync();
 
-            var res = new ResultModel<List<RoleDetailsModel>>();
-
             if (rolesDetailModel != null && rolesDetailModel.Count != 0)
             {
-                res.Done(rolesDetailModel);
-            }
-            else
-            {
-                res.Failed("Empty page");
+                return ResultModel<List<RoleDetailsModel>>.Done(rolesDetailModel);
             }
 
-            return res;
+            return ResultModel<List<RoleDetailsModel>>.Failed("There isnt data");
         }
 
         public async Task<ResultModel<RoleDetailsModel>> SingleAsync(int id)
         {
             var bookDetailModel = await _roleRepository.Table.ProjectTo<RoleDetailsModel>(_mapper.ConfigurationProvider)
                                                                       .FirstOrDefaultAsync(a => a.Id == id);
-            var res = new ResultModel<RoleDetailsModel>();
-
+            
             if (bookDetailModel != null)
             {
-                res.Done(bookDetailModel);
+                return ResultModel<RoleDetailsModel>.Done(bookDetailModel);
             }
-            else
-            {
-                res.Failed("Role does not exist");
-            }
-
-            return res;
+            
+            return ResultModel<RoleDetailsModel>.Failed("Role does not exist");
         }
     }
 }

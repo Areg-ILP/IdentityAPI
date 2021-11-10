@@ -31,24 +31,21 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
         public async Task<ResultModel<TokenResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var authRes = await _authenticator.Authenticate(request);
-            var res = new ResultModel<TokenResult>();
 
             if (authRes.IsSuccessed)
             {
                 var token = _tokenGenerator.GenerateToken(authRes.Data);
                 if (token != null)
                 {
-                    res.Done(new TokenResult()
+                    return ResultModel<TokenResult>.Done(new TokenResult()
                     {
                         Email = request.Email,
                         Token = token
                     });
-                    return res;
                 }
             }
 
-            res.Failed("Authentication error");
-            return res;
+            return ResultModel<TokenResult>.Failed("Login failed");
         }
     }
 }

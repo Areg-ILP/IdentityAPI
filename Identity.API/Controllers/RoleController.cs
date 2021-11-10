@@ -4,16 +4,13 @@ using Identity.Infastructure.Application.Queries.QueriesAbstraction;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Identity.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RoleController : BaseController
     {
         private readonly IRoleQueries _roleQueries;

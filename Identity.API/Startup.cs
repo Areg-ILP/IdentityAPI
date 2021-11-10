@@ -61,7 +61,7 @@ namespace Identity.API
             services.AddControllers()
                     .AddFluentValidation(fv =>
                     {
-                        fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                        fv.RegisterValidatorsFromAssemblyContaining<Assembly>();
                     });
 
             services.AddSwaggerWithSecurityRequirement();
@@ -72,10 +72,9 @@ namespace Identity.API
                     options.UseSqlServer(Configuration.GetConnectionString("IdentityDbContext"));
                     options.EnableSensitiveDataLogging();
                 });
-
-            services.AddAutoMapper(typeof(MapperProfile));
             services.AddCustomServices();
-            services.AddMediatR(typeof(Identity.Infastructure.Application.Commands.Assembly.Assembly).Assembly);
+            services.AddAutoMapper(typeof(Assembly).Assembly);
+            services.AddMediatR(typeof(Assembly).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

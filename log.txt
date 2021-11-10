@@ -1,0 +1,45 @@
+11/10/2021 17:51:29 Application Starting
+ 11/10/2021 17:51:30 User profile is available. Using '"C:\Users\areg.gevorgyan\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest.
+ 11/10/2021 17:51:30 Application started. Press Ctrl+C to shut down.
+ 11/10/2021 17:51:30 Hosting environment: "Development"
+ 11/10/2021 17:51:30 Content root path: "C:\Users\areg.gevorgyan\Source\Repos\IdentityAPI\Identity.API"
+ 11/10/2021 17:51:30 Request starting HTTP/2 GET https://localhost:44331/swagger/index.html - -
+ 11/10/2021 17:51:30 Request finished HTTP/2 GET https://localhost:44331/swagger/index.html - - - 200 - text/html;charset=utf-8 102.3026ms
+ 11/10/2021 17:51:30 Request starting HTTP/2 GET https://localhost:44331/swagger/v1/swagger.json - -
+ 11/10/2021 17:51:31 Request finished HTTP/2 GET https://localhost:44331/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 82.4262ms
+ 11/10/2021 17:51:36 Request starting HTTP/2 GET https://localhost:44331/api/Role?PageNumber=1&PageSize=2 - -
+ 11/10/2021 17:51:36 {
+  "Method": "GET",
+  "Path": "/api/Role",
+  "Query": "?PageNumber=1&PageSize=2",
+  "RequestTime": "11/10/2021 5:51:36 PM",
+  "Body": "",
+  "Headers": [
+    "*/*",
+    "gzip, deflate, br",
+    "en-US,en;q=0.9",
+    "close",
+    "SFSession=ky1vp3rnq5v5qb3zbeuwjkjc; __RequestVerificationToken=OTCCXpZxz2NmxIjpgckTtyiYy--V2A1ODDmOoqRMd160vZs7PxdPD5D4iDXXJMijgyC5LNJjvCJ7199UNlYot5aApLpXmOCq8Oj8CwLEALk1; StateFilingCookie={\"sidebar\":\"expaned\"}; SFAuth=495BF3C0A17966354FDD314787D5A920CB53A44E9E3CCE20CAAA9D8A6D047B9CE8EC4E97895AA4D514B0234A1B9849757466439EAEE63DF78C868905BDBEDCE1D140A9CA5D6BAD8F6286B167AB40BC331B180C694CB2C747A5A3BB987A45D150; StateFilingsApiToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiIxIiwiYWNjb3VudGlkIjoiMSIsInVzZXJuYW1lIjoidGthcnNpYW4iLCJlbWFpbCI6InRrYXJzaWFuQHBlcnJrbmlnaHQuY29tIiwiZmlyc3RuYW1lIjoiVGlncmFuIiwibGFzdG5hbWUiOiJLYXJzaWFuIiwibmJmIjoxNjM2NDcwNTIyLCJleHAiOjE2MzY1NTY5MjIsImlhdCI6MTYzNjQ3MDUyMn0.sNxMYS1DijemOZHQIRgRW7Cc7VOju_U0OzSM8ofkTNo; StateFilingsApiMimicToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiIyNDYiLCJhY2NvdW50aWQiOiIyIiwidXNlcm5hbWUiOiJvZ2FyY2lhIiwiZW1haWwiOiJvZ2FyY2lhQHBlcnJrbmlnaHQuY29tIiwiZmlyc3RuYW1lIjoiT2xnYSBFLiIsImxhc3RuYW1lIjoiTHVuYSIsIm5iZiI6MTYzNjQ3MDU1MSwiZXhwIjoxNjM2NTU2OTUxLCJpYXQiOjE2MzY0NzA1NTF9.Et_nJmG89PMyx2QiIWPyqXrlyJf8hbTT4cZY4snAM_k",
+    "localhost:44331",
+    "https://localhost:44331/swagger/index.html",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.61 Safari/537.36",
+    "\"Chromium\";v=\"94\", \"Google Chrome\";v=\"94\", \";Not A Brand\";v=\"99\"",
+    "?0",
+    "\"Windows\"",
+    "same-origin",
+    "cors",
+    "empty"
+  ]
+}
+ 11/10/2021 17:51:37 Authorization failed. "These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user."
+ 11/10/2021 17:51:37 AuthenticationScheme: "Bearer" was challenged.
+ 11/10/2021 17:51:37 {
+  "StatusCode": 401,
+  "Body": "",
+  "Headers": [
+    "Bearer"
+  ]
+}
+ 11/10/2021 17:51:37 Request finished HTTP/2 GET https://localhost:44331/api/Role?PageNumber=1&PageSize=2 - - - 401 - - 222.6273ms
+ 

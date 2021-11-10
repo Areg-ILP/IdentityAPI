@@ -30,18 +30,16 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
         {
             var role = new Role
             {
-                Name = request.Name
+                Name = request.Name,
             };
 
-            await _roleRepository.CreateAsync(role);
+            var roleId = await _roleRepository.CreateAsync(role);
 
-            var res = new ResultModel<RoleDetailsModel>();
-            res.Done(new RoleDetailsModel()
+            return ResultModel<RoleDetailsModel>.Done(new RoleDetailsModel()
             {
-                Name = request.Name
+                Name = request.Name,
+                Id = roleId
             });
-
-            return res;
         }
     }
 }
