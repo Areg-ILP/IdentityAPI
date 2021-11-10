@@ -7,7 +7,7 @@ using Identity.Infastructure.Application.Models.DetailsModels;
 using Identity.Infastructure.Application.Services.ServiceAbstractions;
 using Identity.Infastructure.Application.Utilities.Extentions;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
+using System;
 using System.Threading.Tasks;
 
 namespace Identity.Infastructure.Application.Services.ServiceImplementations
@@ -27,9 +27,8 @@ namespace Identity.Infastructure.Application.Services.ServiceImplementations
         public async Task<ResultModel<UserDetailsModel>> Authenticate(LoginCommand user)
         {
             var res = await _userRepository.Table.ProjectTo<UserDetailsModel>(_mapper.ConfigurationProvider)
-                                                     .FirstOrDefaultAsync(u => u.Email == user.Email &&
-                                                                               u.Password == user.Password.GenerateHash());
-
+                                                    .FirstOrDefaultAsync(u => u.Email == user.Email &&
+                                                                              u.Password == user.Password.GenerateHash());
             if (res != null)
             {
                 return ResultModel<UserDetailsModel>.Done(res);

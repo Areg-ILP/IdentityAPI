@@ -72,6 +72,7 @@ namespace Identity.API
                     options.UseSqlServer(Configuration.GetConnectionString("IdentityDbContext"));
                     options.EnableSensitiveDataLogging();
                 });
+
             services.AddCustomServices();
             services.AddAutoMapper(typeof(Assembly).Assembly);
             services.AddMediatR(typeof(Assembly).Assembly);

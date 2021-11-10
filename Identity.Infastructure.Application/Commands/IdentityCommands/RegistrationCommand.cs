@@ -36,8 +36,8 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
         public async Task<ResultModel<UserDetailsModel>> Handle(RegistrationCommand request, CancellationToken cancellationToken)
         {
             var checkUser = await _userRepository.Table.ProjectTo<UserDetailsModel>(_mapper.ConfigurationProvider)
-                                                       .FirstOrDefaultAsync(u => u.Email == request.Email);
-
+                                                           .FirstOrDefaultAsync(u => u.Email == request.Email);
+            
             if (checkUser == null)
             {
                 var passHash = request.Password.GenerateHash();

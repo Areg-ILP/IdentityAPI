@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
 using Identity.Domain.Entities;
 using Identity.Infastructure.Application.Models.DetailsModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Identity.Infastructure.Application.Utilities.AutoMapper
 {

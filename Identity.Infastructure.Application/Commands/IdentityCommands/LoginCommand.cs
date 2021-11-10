@@ -30,11 +30,11 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
 
         public async Task<ResultModel<TokenResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var authRes = await _authenticator.Authenticate(request);
+            var res = await _authenticator.Authenticate(request);
 
-            if (authRes.IsSuccessed)
+            if (res.IsSuccessed)
             {
-                var token = _tokenGenerator.GenerateToken(authRes.Data);
+                var token = _tokenGenerator.GenerateToken(res.Data);
                 if (token != null)
                 {
                     return ResultModel<TokenResult>.Done(new TokenResult()
