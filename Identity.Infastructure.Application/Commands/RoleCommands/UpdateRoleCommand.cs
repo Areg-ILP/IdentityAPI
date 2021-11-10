@@ -25,8 +25,13 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
 
         public async Task<ResultModel<RoleDetailsModel>> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
         {
-            var role = await _roleRepository.Table.FirstOrDefaultAsync(r => r.Name == request.OldName);
+            var checkedRole = await _roleRepository.Table.FirstOrDefaultAsync(r => r.Name == request.NewName);
+            if (checkedRole != null)
+            {
+                return ResultModel<RoleDetailsModel>.Failed("Role exist");
+            }
 
+            var role = await _roleRepository.Table.FirstOrDefaultAsync(r => r.Name == request.OldName);
             if (role == null)
             {
                 return ResultModel<RoleDetailsModel>.Failed("Role dosent exists");
