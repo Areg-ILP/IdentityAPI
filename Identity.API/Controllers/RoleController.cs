@@ -42,5 +42,19 @@ namespace Identity.API.Controllers
             var res = await _mediator.Send(model);
             return DefineActionResult(res, true);
         }
+
+        [HttpDelete("delete-role")]
+        public async Task<IActionResult> DeleteRoleAsync(DeleteRoleCommand model)
+        {
+            var res = await _mediator.Send(model);
+            return DefineActionResult(res, true);
+        }
+
+        [HttpPut("update-role")]
+        public async Task<IActionResult> UpdateRoleAsync(UpdateRoleCommand model)
+        {
+            var res = await _mediator.Send(model);
+            return DefineActionResult(res, true);
+        }
     }
 }
