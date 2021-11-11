@@ -10,8 +10,8 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
 {
     public sealed class UpdateRoleCommand : IRequest<ResultModel<RoleDetailsModel>>
     {
-        public string OldName { get; set; }
-        public string NewName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
     public sealed class UpdateRoleCommandHandler : IRequestHandler<UpdateRoleCommand, ResultModel<RoleDetailsModel>>
@@ -25,24 +25,24 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
 
         public async Task<ResultModel<RoleDetailsModel>> Handle(UpdateRoleCommand request, CancellationToken cancellationToken)
         {
-            var checkedRole = await _roleRepository.Table.FirstOrDefaultAsync(r => r.Name == request.NewName);
+            var checkedRole = await _roleRepository.Table.FirstOrDefaultAsync(r => r.Name == request.Name);
             if (checkedRole != null)
             {
                 return ResultModel<RoleDetailsModel>.Failed("Role exist");
             }
 
-            var role = await _roleRepository.Table.FirstOrDefaultAsync(r => r.Name == request.OldName);
+            var role = await _roleRepository.Get(request.Id);
             if (role == null)
             {
                 return ResultModel<RoleDetailsModel>.Failed("Role dosent exists");
             }
 
-            role.Name = request.NewName;
+            role.Name = request.Name;
             var roleId = await _roleRepository.UpdateAsync(role);
 
             return ResultModel<RoleDetailsModel>.Done(new RoleDetailsModel()
             {
-                Name = request.NewName,
+                Name = request.Name,
                 Id = roleId
             });
         }

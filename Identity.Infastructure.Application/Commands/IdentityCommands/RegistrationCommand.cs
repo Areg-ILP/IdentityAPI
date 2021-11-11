@@ -40,7 +40,8 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
             
             if (checkUser == null)
             {
-                var passHash = request.Password.GenerateHash();
+                var passHash = StringExtentions.GenerateHash(request.Password);
+
                 var userId = await _userRepository.CreateAsync(new User()
                              {
                                 Email = request.Email,
@@ -49,7 +50,7 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
                                 EmailConfirmed = false,
                                 PhoneNumberConfirmed = false,
                                 TwoFactorEnabled = false,
-                                RoleId = 1
+                                RoleId = 2
                              });
 
                 return ResultModel<UserDetailsModel>.Done(new UserDetailsModel()
