@@ -61,7 +61,7 @@ namespace Identity.API
             services.AddControllers()
                     .AddFluentValidation(fv =>
                     {
-                        fv.RegisterValidatorsFromAssemblyContaining<Assembly>();
+                        fv.RegisterValidatorsFromAssemblyContaining<InfastructureApplicationAssembly>();
                     });
 
             services.AddSwaggerWithSecurityRequirement();
@@ -74,8 +74,8 @@ namespace Identity.API
                 });
 
             services.AddCustomServices();
-            services.AddAutoMapper(typeof(Assembly).Assembly);
-            services.AddMediatR(typeof(Assembly).Assembly);
+            services.AddAutoMapper(typeof(InfastructureApplicationAssembly).Assembly);
+            services.AddMediatR(typeof(InfastructureApplicationAssembly).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
