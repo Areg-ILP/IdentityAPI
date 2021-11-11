@@ -2,6 +2,7 @@
 using Identity.Domain.RepositoryAbstraction;
 using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.DetailsModels;
+using Identity.Infastructure.Application.Utilities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -29,7 +30,7 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
             
             if(checkedRole != null)
             {
-                return ResultModel<RoleDetailsModel>.Failed("Role exist");
+                return ResultModel<RoleDetailsModel>.Failed(CustomErrorMessage.RoleExists);
             }
 
             var role = new Role

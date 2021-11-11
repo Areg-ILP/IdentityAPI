@@ -5,12 +5,9 @@ using Identity.Domain.RepositoryAbstraction;
 using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.DetailsModels;
 using Identity.Infastructure.Application.Utilities.Extentions;
+using Identity.Infastructure.Application.Utilities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -61,7 +58,7 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
                 });
             }
             
-            return ResultModel<UserDetailsModel>.Failed("Registration error");
+            return ResultModel<UserDetailsModel>.Failed(CustomErrorMessage.RegistrationFailed);
         }
     }
 }

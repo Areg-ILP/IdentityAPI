@@ -11,12 +11,12 @@ namespace Identity.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
-    public class RoleController : BaseController
+    public class RolesController : BaseController
     {
         private readonly IRoleQueries _roleQueries;
         private readonly IMediator _mediator;
         
-        public RoleController(IRoleQueries roleQueries, IMediator mediator)
+        public RolesController(IRoleQueries roleQueries, IMediator mediator)
         {
             _roleQueries = roleQueries;
             _mediator = mediator;
@@ -36,21 +36,21 @@ namespace Identity.API.Controllers
             return DefineActionResult(res, false);
         }
 
-        [HttpPost("add-role")]
+        [HttpPost]
         public async Task<IActionResult> AddRoleAsync(AddRoleCommand model)
         {
             var res = await _mediator.Send(model);
             return DefineActionResult(res, true);
         }
 
-        [HttpDelete("delete-role")]
+        [HttpDelete]
         public async Task<IActionResult> DeleteRoleAsync(DeleteRoleCommand model)
         {
             var res = await _mediator.Send(model);
             return DefineActionResult(res, true);
         }
 
-        [HttpPut("update-role")]
+        [HttpPut]
         public async Task<IActionResult> UpdateRoleAsync(UpdateRoleCommand model)
         {
             var res = await _mediator.Send(model);

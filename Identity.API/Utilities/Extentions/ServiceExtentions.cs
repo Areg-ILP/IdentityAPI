@@ -14,12 +14,13 @@ namespace Identity.API.Utilities.Extentions
     {
         public static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IRoleRepository, RoleRepository>();
-            services.AddTransient<IClaimRepository, ClaimRepository>();
-            services.AddTransient<ITokenGenerator, TokenGenerator>();
-            services.AddTransient<IAuthenticator, Authenticator>();
-            services.AddTransient<IRoleQueries, RoleQueries>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IClaimRepository, ClaimRepository>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
+            services.AddScoped<IAuthenticator, Authenticator>();
+            services.AddScoped<IRoleQueries, RoleQueries>();
+            services.AddScoped<IUserQueries, UserQueries>();
 
             return services;
         }

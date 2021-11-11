@@ -4,6 +4,7 @@ using Identity.Domain.RepositoryAbstraction;
 using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.DetailsModels;
 using Identity.Infastructure.Application.Queries.QueriesAbstraction;
+using Identity.Infastructure.Application.Utilities.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                 return ResultModel<List<RoleDetailsModel>>.Done(rolesDetailModel);
             }
 
-            return ResultModel<List<RoleDetailsModel>>.Failed("There isnt data");
+            return ResultModel<List<RoleDetailsModel>>.Failed(CustomErrorMessage.NoData);
         }
 
         public async Task<ResultModel<RoleDetailsModel>> SingleAsync(int id)
@@ -49,7 +50,7 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                 return ResultModel<RoleDetailsModel>.Done(bookDetailModel);
             }
             
-            return ResultModel<RoleDetailsModel>.Failed("Role does not exist");
+            return ResultModel<RoleDetailsModel>.Failed(CustomErrorMessage.RoleDoesntExist);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.JWTModels;
 using Identity.Infastructure.Application.Services.ServiceAbstractions;
+using Identity.Infastructure.Application.Utilities.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
                 }
             }
 
-            return ResultModel<TokenResult>.Failed("Login failed");
+            return ResultModel<TokenResult>.Failed(CustomErrorMessage.LoginFailed);
         }
     }
 }
