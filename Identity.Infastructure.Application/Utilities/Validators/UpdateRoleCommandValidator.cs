@@ -7,11 +7,12 @@ namespace Identity.Infastructure.Application.Utilities.Validators
     {
         public UpdateRoleCommandValidator()
         {
-            RuleFor(model => model.OldName)
-                .NotEmpty().WithMessage("Old name is empty");
-            RuleFor(model => model.NewName)
-               .NotEmpty().WithMessage("New Name is empty")
-               .Length(1,25).WithMessage("Lenght of password not valid");
+            RuleFor(model => model.Id)
+                .GreaterThanOrEqualTo(1)
+                .WithMessage("Id must greater than 0");
+            RuleFor(model => model.Name)
+               .NotEmpty().WithMessage("Name is empty")
+               .Length(1,25).WithMessage("Lenght of name not valid");
         }
     }
 }
