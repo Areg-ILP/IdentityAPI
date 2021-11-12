@@ -20,7 +20,7 @@ namespace Identity.Infastructure.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //mb
         }
     }
 }

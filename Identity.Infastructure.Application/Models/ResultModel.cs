@@ -4,7 +4,7 @@
     {
         public bool IsSuccessed { get; private set; }
         public T Data { get; private set; }
-        public string ErrorMessage { get; private set; }
+        public string Message { get; private set; }
 
         public static ResultModel<T> Done(T data)
         {
@@ -15,12 +15,21 @@
             };
         }
 
+        public static ResultModel<T> NoData(string message)
+        {
+            return new ResultModel<T>()
+            {
+                IsSuccessed = true,
+                Message = message
+            };
+        }
+
         public static ResultModel<T> Failed(string errorMessage)
         {
             return new ResultModel<T>()
             {
                 IsSuccessed = false,
-                ErrorMessage = errorMessage
+                Message = errorMessage
             };
         }
         

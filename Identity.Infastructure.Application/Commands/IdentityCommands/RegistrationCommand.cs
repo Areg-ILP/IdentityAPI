@@ -8,6 +8,7 @@ using Identity.Infastructure.Application.Utilities.Extentions;
 using Identity.Infastructure.Application.Utilities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,7 +44,7 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
                              {
                                 Email = request.Email,
                                 PasswordHash = passHash,
-                                UserName = request.Email.Split("@")[0],
+                                UserName = request.Email.Split("@").First(),
                                 AccessFailedCount = 0,
                                 EmailConfirmed = false,
                                 PhoneNumberConfirmed = false,

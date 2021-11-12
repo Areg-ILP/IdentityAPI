@@ -22,14 +22,14 @@ namespace Identity.API.Controllers
         public async Task<IActionResult> SingleAsync(int id)
         {
             var res = await _userQueries.SingleAsync(id);
-            return DefineActionResult(res, false);
+            return DefineActionResult(res);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAsync([FromQuery] PaginationModel paginationModel)
         {
             var res = await _userQueries.GetAllAsync(paginationModel);
-            return DefineActionResult(res, false);
+            return DefineActionResult(res);
         }
     }
 }

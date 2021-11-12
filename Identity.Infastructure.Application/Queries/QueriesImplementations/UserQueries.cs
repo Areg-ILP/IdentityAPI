@@ -35,7 +35,7 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                 return ResultModel<List<UserDetailsModel>>.Done(usersDetailModel);
             }
 
-            return ResultModel<List<UserDetailsModel>>.Failed(CustomErrorMessage.NoData);
+            return ResultModel<List<UserDetailsModel>>.NoData(CustomErrorMessage.NoData);
         }
 
         public async Task<ResultModel<UserDetailsModel>> SingleAsync(int id)
@@ -48,7 +48,7 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                 return ResultModel<UserDetailsModel>.Done(userDetailModel);
             }
 
-            return ResultModel<UserDetailsModel>.Failed(CustomErrorMessage.UserDoesntExist);
+            return ResultModel<UserDetailsModel>.NoData(CustomErrorMessage.UserDoesntExist);
         }
     }
 }

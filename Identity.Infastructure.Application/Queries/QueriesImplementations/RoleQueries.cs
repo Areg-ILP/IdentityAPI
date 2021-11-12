@@ -37,7 +37,7 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                 return ResultModel<List<RoleDetailsModel>>.Done(rolesDetailModel);
             }
 
-            return ResultModel<List<RoleDetailsModel>>.Failed(CustomErrorMessage.NoData);
+            return ResultModel<List<RoleDetailsModel>>.NoData(CustomErrorMessage.NoData);
         }
 
         public async Task<ResultModel<RoleDetailsModel>> SingleAsync(int id)
@@ -50,7 +50,7 @@ namespace Identity.Infastructure.Application.Queries.QueriesImplementations
                 return ResultModel<RoleDetailsModel>.Done(bookDetailModel);
             }
             
-            return ResultModel<RoleDetailsModel>.Failed(CustomErrorMessage.RoleDoesntExist);
+            return ResultModel<RoleDetailsModel>.NoData(CustomErrorMessage.RoleDoesntExist);
         }
     }
 }
