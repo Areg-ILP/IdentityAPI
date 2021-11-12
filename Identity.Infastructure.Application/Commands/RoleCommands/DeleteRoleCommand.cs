@@ -32,12 +32,12 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
                 return ResultModel<RoleDetailsModel>.Failed(CustomErrorMessage.RoleDoesntExist);
             }
 
-            var roleId = await _roleRepository.DeleteAsync(role);
-
+            var roleEntity = await _roleRepository.DeleteAsync(role);
+            
             return ResultModel<RoleDetailsModel>.Done(new RoleDetailsModel()
             {
                 Name = request.Name,
-                Id = roleId
+                Id = roleEntity.Id
             });
         }
     }

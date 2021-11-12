@@ -3,9 +3,6 @@ using Identity.Infastructure.Application.Models.JWTModels;
 using Identity.Infastructure.Application.Services.ServiceAbstractions;
 using Identity.Infastructure.Application.Utilities.Models;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +28,7 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
 
         public async Task<ResultModel<TokenResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var res = await _authenticator.Authenticate(request);
+            var res = await _authenticator.AuthenticateAsync(request);
 
             if (res.IsSuccessed)
             {

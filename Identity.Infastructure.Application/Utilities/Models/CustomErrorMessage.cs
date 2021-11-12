@@ -8,5 +8,6 @@
         public static string NoData = "There isn't data";
         public static string LoginFailed = "Login failed";
         public static string RegistrationFailed = "Registration failed";
+        public static string AuthenticationError = "Authentication error";
     }
 }

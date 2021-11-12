@@ -37,25 +37,23 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
             
             if (checkUser == null)
             {
-                var passHash = StringExtentions.GenerateHash(request.Password);
+                var passHash = HashHelper.GetSoltedHash(request.Password,request.Email);
 
-                var userId = await _userRepository.CreateAsync(new User()
+                var user = await _userRepository.CreateAsync(new User()
                              {
                                 Email = request.Email,
                                 PasswordHash = passHash,
+                                UserName = request.Email.Split("@")[0],
                                 AccessFailedCount = 0,
                                 EmailConfirmed = false,
                                 PhoneNumberConfirmed = false,
                                 TwoFactorEnabled = false,
-                                RoleId = 2
-                             });
+                                RoleId = 1
+                             });;
 
-                return ResultModel<UserDetailsModel>.Done(new UserDetailsModel()
-                {
-                    Email = request.Email,
-                    Password = passHash,
-                    Id = userId
-                });
+                var userDetailModel = _mapper.Map<UserDetailsModel>(user);
+
+                return ResultModel<UserDetailsModel>.Done(userDetailModel);
             }
             
             return ResultModel<UserDetailsModel>.Failed(CustomErrorMessage.RegistrationFailed);

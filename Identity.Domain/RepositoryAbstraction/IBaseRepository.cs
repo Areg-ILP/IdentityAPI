@@ -1,9 +1,5 @@
 ﻿using Identity.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Identity.Domain.RepositoryAbstraction
@@ -12,8 +8,8 @@ namespace Identity.Domain.RepositoryAbstraction
     {
         Task<TEntity> Get(int? id);
         DbSet<TEntity> Table { get; }
-        Task<int> CreateAsync(TEntity entity);
-        Task<int> UpdateAsync(TEntity entity);
-        Task<int> DeleteAsync(TEntity entity);
+        Task<TEntity> CreateAsync(TEntity entity);
+        Task<TEntity> UpdateAsync(TEntity entity);
+        Task<TEntity> DeleteAsync(TEntity entity);
     }
 }

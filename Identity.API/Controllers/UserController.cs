@@ -8,7 +8,7 @@ namespace Identity.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class UsersController : BaseController
     {
         private readonly IUserQueries _userQueries;

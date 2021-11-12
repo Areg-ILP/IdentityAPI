@@ -7,6 +7,6 @@ namespace Identity.Infastructure.Application.Services.ServiceAbstractions
 {
     public interface IAuthenticator
     {
-        Task<ResultModel<UserDetailsModel>> Authenticate(LoginCommand model);
+        Task<ResultModel<UserDetailsModel>> AuthenticateAsync(LoginCommand model);
     }
 }

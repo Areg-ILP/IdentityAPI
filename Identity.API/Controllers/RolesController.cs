@@ -10,7 +10,7 @@ namespace Identity.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RolesController : BaseController
     {
         private readonly IRoleQueries _roleQueries;

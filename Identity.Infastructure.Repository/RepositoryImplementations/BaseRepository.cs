@@ -31,34 +31,34 @@ namespace Identity.Infastructure.RepositoryImplementations
             }
         }
 
-        public virtual async Task<int> CreateAsync(TEntity entity)
+        public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
             if (entity == null)
                 throw new NullReferenceException();
             await _entities.AddAsync(entity);
             await _context.SaveChangesAsync();
 
-            return entity.Id;
+            return entity;
         }
 
-        public virtual async Task<int> DeleteAsync(TEntity entity)
+        public virtual async Task<TEntity> DeleteAsync(TEntity entity)
         {
             if (entity == null)
                 throw new NullReferenceException();
             _entities.Remove(entity);
             await _context.SaveChangesAsync();
 
-            return entity.Id;
+            return entity;
         }
 
-        public virtual async Task<int> UpdateAsync(TEntity entity)
+        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
             if (entity == null)
                 throw new NullReferenceException();
             _entities.Update(entity);
             await _context.SaveChangesAsync();
 
-            return entity.Id;
+            return entity;
         }
     }
 }

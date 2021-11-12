@@ -39,12 +39,12 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
             }
 
             role.Name = request.Name;
-            var roleId = await _roleRepository.UpdateAsync(role);
-
+            var roleEntity = await _roleRepository.UpdateAsync(role);
+            
             return ResultModel<RoleDetailsModel>.Done(new RoleDetailsModel()
             {
                 Name = request.Name,
-                Id = roleId
+                Id = roleEntity.Id
             });
         }
     }

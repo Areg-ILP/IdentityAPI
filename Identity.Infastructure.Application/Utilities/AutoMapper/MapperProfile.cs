@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Identity.Domain.Entities;
 using Identity.Infastructure.Application.Models.DetailsModels;
+using System.Collections.Generic;
 
 namespace Identity.Infastructure.Application.Utilities.AutoMapper
 {

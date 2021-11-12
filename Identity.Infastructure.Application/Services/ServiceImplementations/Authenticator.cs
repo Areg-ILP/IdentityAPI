@@ -6,7 +6,9 @@ using Identity.Infastructure.Application.Models;
 using Identity.Infastructure.Application.Models.DetailsModels;
 using Identity.Infastructure.Application.Services.ServiceAbstractions;
 using Identity.Infastructure.Application.Utilities.Extentions;
+using Identity.Infastructure.Application.Utilities.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,18 +26,19 @@ namespace Identity.Infastructure.Application.Services.ServiceImplementations
             _mapper = mapper;
         }
 
-        public async Task<ResultModel<UserDetailsModel>> Authenticate(LoginCommand user)
+        public async Task<ResultModel<UserDetailsModel>> AuthenticateAsync(LoginCommand user)
         {
-            var passHash = StringExtentions.GenerateHash(user.Password);
-            var res = await _userRepository.Table.ProjectTo<UserDetailsModel>(_mapper.ConfigurationProvider)
-                                                    .FirstOrDefaultAsync(u => u.Email == user.Email &&
-                                                                              u.Password == passHash);
-            if (res != null)
+            var passHash = HashHelper.GetSoltedHash(user.Password, user.Email);
+            var userEntity = await _userRepository.Table.FirstOrDefaultAsync(u => u.Email == user.Email &&
+                                                                       u.PasswordHash == passHash);
+
+            if(userEntity == null)
             {
-                return ResultModel<UserDetailsModel>.Done(res);
+                return ResultModel<UserDetailsModel>.Failed(CustomErrorMessage.AuthenticationError);
             }
-            
-            return ResultModel<UserDetailsModel>.Failed("Authentication error");
+
+            var res = _mapper.Map<UserDetailsModel>(userEntity);
+            return ResultModel<UserDetailsModel>.Done(res);
         }
     }
 }

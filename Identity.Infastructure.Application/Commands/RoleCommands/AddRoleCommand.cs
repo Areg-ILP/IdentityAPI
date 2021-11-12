@@ -38,12 +38,12 @@ namespace Identity.Infastructure.Application.Commands.RoleCommands
                 Name = request.Name,
             };
 
-            var roleId = await _roleRepository.CreateAsync(role);
+            var roleEntity = await _roleRepository.CreateAsync(role);
 
             return ResultModel<RoleDetailsModel>.Done(new RoleDetailsModel()
             {
                 Name = request.Name,
-                Id = roleId
+                Id = roleEntity.Id
             });
         }
     }
