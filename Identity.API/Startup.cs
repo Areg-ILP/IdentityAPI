@@ -2,7 +2,6 @@ using FluentValidation.AspNetCore;
 using Identity.API.Middlewares;
 using Identity.API.Utilities.Extentions;
 using Identity.Infastructure.Application.Commands.Assembly;
-using Identity.Infastructure.Application.Utilities.AutoMapper;
 using Identity.Infastructure.Application.Utilities.Models;
 using Identity.Infastructure.Contexts;
 using MediatR;

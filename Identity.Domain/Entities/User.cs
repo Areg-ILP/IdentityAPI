@@ -1,4 +1,6 @@
-﻿namespace Identity.Domain.Entities
+﻿using System;
+
+namespace Identity.Domain.Entities
 {
     public class User : Entity
     {
@@ -6,6 +8,7 @@
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public int AccessFailedCount { get; set; }
+        public DateTime CrationDate { get; set; }
 
         //mb
         public string PhoneNumber { get; set; }

@@ -49,7 +49,7 @@ namespace Identity.Infastructure.Application.Commands.IdentityCommands
                                 EmailConfirmed = false,
                                 PhoneNumberConfirmed = false,
                                 TwoFactorEnabled = false,
-                                RoleId = 1
+                                RoleId = 2
                              });;
 
                 var userDetailModel = _mapper.Map<UserDetailsModel>(user);
